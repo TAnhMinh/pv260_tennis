@@ -12,11 +12,13 @@ class Kata {
     }
 
     public void scoredA() {
+
         if (aScore == 40) { return; }
         aScore += (aScore == 30) ? 10 : 15;
     }
 
     public void scoredB() {
+
         if (bScore ==40) { return; }
         bScore += (bScore == 30) ? 10 : 15;
     }

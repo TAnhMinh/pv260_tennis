@@ -19,6 +19,7 @@ public class KataTest
 
     @Test
     public void bothPlayersZeroScoreAfterCreationTest() {
+
         Kata game = new Kata();
         assertEquals(0, game.aScore);
         assertEquals(0, game.bScore);
@@ -26,6 +27,7 @@ public class KataTest
 
     @Test
     public void scoredPlayerTest() {
+
         Kata game = new Kata();
         int aScore = game.aScore;
         int bScore = game.bScore;
@@ -52,11 +54,48 @@ public class KataTest
         assertEquals(40, game.aScore);
         assertEquals(40, game.bScore);
 
-
         game.scoredA(); // should not go above 40
         game.scoredB(); // same
 
         assertEquals(40, game.aScore);
         assertEquals(40, game.bScore);
+    }
+
+    /**
+     * Tests that if A player is at 40, the next
+     * scoring sets the advantage.
+     * Does not yet care about other players points.
+     */
+    @Test
+    public void dumbAdvantageTestA() {
+
+        Kata game = new Kata();
+
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+
+        assertEquals(40, game.aScore);
+        assertTrue(game.advantageA);
+    }
+
+    /**
+     * Tests that if B player is at 40, the next
+     * scoring sets the advantage.
+     * Does not yet care about other players points.
+     */
+    @Test
+    public void dumbAdvantageTestA() {
+
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+
+        assertEquals(40, game.aScore);
+        assertTrue(game.advantageB);
     }
 }

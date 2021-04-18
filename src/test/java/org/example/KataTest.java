@@ -33,21 +33,28 @@ public class KataTest
         game.scoredA();
         game.scoredB();
 
+        assertEquals(game.aScore, 15);
+        assertEquals(game.bScore, 15);
+
         assertTrue(game.aScore > aScore);
         assertTrue(game.bScore > bScore);
 
         // Sets score of both players to 40
         game.scoredA();
-        game.scoredA();
         game.scoredB();
+
+        assertEquals(game.aScore, 30);
+        assertEquals(game.bScore, 30);
+
+        game.scoredA();
         game.scoredB();
 
         assertEquals(40, game.aScore);
         assertEquals(40, game.bScore);
 
 
-        game.scoredA(); // Sets playerA to have advantage
-        game.scoredB(); // Resets playerA advantage
+        game.scoredA(); // should not go above 40
+        game.scoredB(); // same
 
         assertEquals(40, game.aScore);
         assertEquals(40, game.bScore);

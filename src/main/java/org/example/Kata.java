@@ -3,6 +3,8 @@ package org.example;
 class Kata {
     int aScore;
     int bScore;
+    boolean advantageA;
+    boolean advantageB;
 
 
 
@@ -15,11 +17,17 @@ class Kata {
 
         if (aScore == 40) { return; }
         aScore += (aScore == 30) ? 10 : 15;
+        if (aScore == 40){
+            advantageA = true;
+        }
     }
 
     public void scoredB() {
 
         if (bScore ==40) { return; }
         bScore += (bScore == 30) ? 10 : 15;
+        if (bScore == 40){
+            advantageB = true;
+        }
     }
 }

@@ -2,7 +2,6 @@ package org.example;
 
 import org.junit.Test;
 
-import static java.lang.invoke.MethodHandles.catchException;
 import static org.junit.Assert.*;
 
 /**
@@ -107,5 +106,83 @@ public class KataTest
         assertEquals(40, game.aScore);
         assertEquals(40, game.bScore);
         assertTrue(game.advantageB);
+    }
+
+    /**
+     * Tests some scenarios of showScore().
+     */
+    @Test
+    public void dumbShowScoreTest() {
+        Kata game = new Kata();
+
+        game.scoredA();
+        game.scoredA();
+        game.scoredB();
+
+        assertEquals(game.showScore(), "30 - 15");
+
+        game.scoredA();
+        game.scoredB();
+        game.scoredB();
+        // Game is now tied at 40 - 40 -> "deuce"
+        game.scoredA();
+        // Player A now has advantage
+        assertEquals(game.showScore(), "A - 40");
+    }
+
+    /**
+     * Tests if showScore() returns winner: A in correct format
+     * when playerA is a winner.
+     */
+    @Test
+    public void winnerAPrintTest() {
+
+        Kata game = new Kata();
+
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+
+        assertEquals(game.showScore(), "winner: A");
+    }
+
+    /**
+     * Tests if showScore() returns winner: B in correct format
+     * when playerB is a winner.
+     */
+    @Test
+    public void winnerBPrintTest() {
+
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+
+        assertEquals(game.showScore(), "winner: B");
+    }
+
+    /**
+     * Tests that when the score is equal for both players,
+     * showScore() returns "<score> all" and "deuce" at 40.
+     */
+    @Test
+    public void showEqualScore() {
+        Kata game = new Kata();
+        assertEquals(game.showScore(), "0 all");
+
+        game.scoredA();
+        game.scoredB();
+        assertEquals(game.showScore(), "15 all");
+
+        game.scoredA();
+        game.scoredB();
+        assertEquals(game.showScore(), "30 all");
+
+        game.scoredA();
+        game.scoredB();
+        assertEquals(game.showScore(), "deuce");
     }
 }

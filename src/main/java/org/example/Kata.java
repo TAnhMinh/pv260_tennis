@@ -32,4 +32,8 @@ class Kata {
         bScore += (bScore == 30) ? 10 : 15;
 
     }
+
+    public String showScore() {
+        throw new UnsupportedOperationException();
+    }
 }

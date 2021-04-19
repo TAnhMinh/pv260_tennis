@@ -108,6 +108,63 @@ public class KataTest
         assertTrue(game.advantageB);
     }
 
+    @Test
+    public void advantageResets() {
+
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredA();
+        game.scoredB();
+        game.scoredA();
+        game.scoredB();
+        game.scoredA();
+        game.scoredB();
+
+        assertEquals(40, game.aScore);
+        assertEquals(40, game.bScore);
+        assertTrue(game.advantageB);
+
+        game.scoredA();
+        assertEquals(40, game.aScore);
+        assertEquals(40, game.bScore);
+        assertFalse(game.advantageB);
+        assertFalse(game.advantageA);
+    }
+
+    @Test
+    public void winnerSetA() {
+
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredB();
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+
+        assertEquals(game.winner, "A");
+
+    }
+
+    @Test
+    public void winnerSetB() {
+
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredB();
+        game.scoredA();
+        game.scoredA();
+        game.scoredB();
+        game.scoredB();
+
+        assertEquals(game.winner, "A");
+
+    }
+
+
     /**
      * Tests some scenarios of showScore().
      */

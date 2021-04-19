@@ -34,6 +34,16 @@ class Kata {
     }
 
     public String showScore() {
-        throw new UnsupportedOperationException();
+
+        String stringA;
+        String stringB;
+
+        stringA = (advantageA) ? "A" : String.valueOf(aScore);
+
+        stringB = (advantageB) ? "B" : String.valueOf(bScore);
+
+        return String.format("%s - %s", stringA, stringB);
+
+
     }
 }

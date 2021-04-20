@@ -15,6 +15,10 @@ class Kata {
     }
 
     public void scoredA() {
+        if (winner != null) {
+            throw new IllegalStateException(winner + "already won!");
+        }
+
         if (advantageA) {
             winner = "A";
             return;
@@ -37,6 +41,10 @@ class Kata {
     }
 
     public void scoredB() {
+        if (winner != null) {
+            throw new IllegalStateException(winner + "already won!");
+        }
+
         if (advantageB) {
             winner = "B";
             return;

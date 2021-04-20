@@ -1,8 +1,11 @@
 package org.example;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit test for simple App.
@@ -237,5 +240,36 @@ public class KataTest {
         game.scoredA();
         game.scoredB();
         assertEquals("deuce", game.showScore());
+    }
+
+
+    @Test
+    public void throwIfWinnerA() {
+        Kata game = new Kata();
+
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+        game.scoredA();
+
+        assertEquals(game.winner, "A");
+
+        assertThrows(IllegalStateException.class, game::scoredA);
+        assertThrows(IllegalStateException.class, game::scoredB);
+    }
+
+    @Test
+    public void throwIfWinnerB() {
+        Kata game = new Kata();
+
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+        game.scoredB();
+
+        assertEquals(game.winner, "B");
+
+        assertThrows(IllegalStateException.class, game::scoredB);
+        assertThrows(IllegalStateException.class, game::scoredA);
     }
 }

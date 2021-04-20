@@ -7,11 +7,9 @@ import static org.junit.Assert.*;
 /**
  * Unit test for simple App.
  */
-public class KataTest
-{
+public class KataTest {
     @Test
-    public void createGameTest()
-    {
+    public void createGameTest() {
         Kata game = new Kata();
         assertNotNull(game);
     }
@@ -34,8 +32,8 @@ public class KataTest
         game.scoredA();
         game.scoredB();
 
-        assertEquals(game.aScore, 15);
-        assertEquals(game.bScore, 15);
+        assertEquals(15, game.aScore);
+        assertEquals(15, game.bScore);
 
         assertTrue(game.aScore > aScore);
         assertTrue(game.bScore > bScore);
@@ -44,8 +42,8 @@ public class KataTest
         game.scoredA();
         game.scoredB();
 
-        assertEquals(game.aScore, 30);
-        assertEquals(game.bScore, 30);
+        assertEquals(30, game.aScore);
+        assertEquals(30, game.bScore);
 
         game.scoredA();
         game.scoredB();
@@ -63,8 +61,8 @@ public class KataTest
     /**
      * Tests that if A player is at 40, the next
      * scoring sets the advantage.
-     *  Other players points are going up so this does not
-     *  test the impact of the difference yet.
+     * Other players points are going up so this does not
+     * test the impact of the difference yet.
      */
     @Test
     public void dumbAdvantageTestA() {
@@ -144,8 +142,7 @@ public class KataTest
         game.scoredA();
         game.scoredA();
 
-        assertEquals(game.winner, "A");
-
+        assertEquals("A", game.winner);
     }
 
     @Test
@@ -160,8 +157,7 @@ public class KataTest
         game.scoredB();
         game.scoredB();
 
-        assertEquals(game.winner, "A");
-
+        assertEquals("B", game.winner);
     }
 
 
@@ -176,7 +172,7 @@ public class KataTest
         game.scoredA();
         game.scoredB();
 
-        assertEquals(game.showScore(), "30 - 15");
+        assertEquals("30 - 15", game.showScore());
 
         game.scoredA();
         game.scoredB();
@@ -184,7 +180,7 @@ public class KataTest
         // Game is now tied at 40 - 40 -> "deuce"
         game.scoredA();
         // Player A now has advantage
-        assertEquals(game.showScore(), "A - 40");
+        assertEquals("A - 40", game.showScore());
     }
 
     /**
@@ -201,7 +197,7 @@ public class KataTest
         game.scoredA();
         game.scoredA();
 
-        assertEquals(game.showScore(), "winner: A");
+        assertEquals("winner: A", game.showScore());
     }
 
     /**
@@ -218,7 +214,7 @@ public class KataTest
         game.scoredB();
         game.scoredB();
 
-        assertEquals(game.showScore(), "winner: B");
+        assertEquals("winner: B", game.showScore());
     }
 
     /**
@@ -228,18 +224,18 @@ public class KataTest
     @Test
     public void showEqualScore() {
         Kata game = new Kata();
-        assertEquals(game.showScore(), "0 all");
+        assertEquals("0 all", game.showScore());
 
         game.scoredA();
         game.scoredB();
-        assertEquals(game.showScore(), "15 all");
+        assertEquals("15 all", game.showScore());
 
         game.scoredA();
         game.scoredB();
-        assertEquals(game.showScore(), "30 all");
+        assertEquals("30 all", game.showScore());
 
         game.scoredA();
         game.scoredB();
-        assertEquals(game.showScore(), "deuce");
+        assertEquals("deuce", game.showScore());
     }
 }

@@ -10,8 +10,11 @@ class Kata {
 
 
     public Kata(){
-        this.aScore = 0;
-        this.bScore = 0;
+        aScore = 0;
+        bScore = 0;
+        winner = null;
+        advantageA = false;
+        advantageB = false;
     }
 
     public void scoredA() {

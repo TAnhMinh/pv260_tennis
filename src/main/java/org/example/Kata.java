@@ -18,9 +18,7 @@ class Kata {
     }
 
     public void scoredA() {
-        if (winner != null) {
-            throw new IllegalStateException(winner + "already won!");
-        }
+        checkAlreadyWinner();
 
         if (advantageA) {
             winner = "A";
@@ -43,10 +41,10 @@ class Kata {
 
     }
 
+
+
     public void scoredB() {
-        if (winner != null) {
-            throw new IllegalStateException(winner + "already won!");
-        }
+        checkAlreadyWinner();
 
         if (advantageB) {
             winner = "B";
@@ -70,9 +68,7 @@ class Kata {
 
     public String showScore() {
 
-        if (winner != null) {
-            return String.format("winner: %s", winner);
-        }
+        checkAlreadyWinner();
 
         String stringA;
         String stringB;
@@ -85,6 +81,12 @@ class Kata {
 
         } else{
             return (aScore == 40) ? "deuce" : String.format("%s all", stringA);
+        }
+    }
+
+    private void checkAlreadyWinner() {
+        if (winner != null) {
+            throw new IllegalStateException(winner + "already won!");
         }
     }
 }

@@ -21,44 +21,44 @@ public class KataTest {
     public void bothPlayersZeroScoreAfterCreationTest() {
 
         Kata game = new Kata();
-        assertEquals(0, game.aScore);
-        assertEquals(0, game.bScore);
+        assertEquals(0, game.scores.get(0));
+        assertEquals(0, game.scores.get(1));
     }
 
     @Test
     public void scoredPlayerTest() {
 
         Kata game = new Kata();
-        int aScore = game.aScore;
-        int bScore = game.bScore;
+        int aScore = game.scores.get(0);
+        int bScore = game.scores.get(1);
 
         game.scoredA();
         game.scoredB();
 
-        assertEquals(15, game.aScore);
-        assertEquals(15, game.bScore);
+        assertEquals(15, game.scores.get(0));
+        assertEquals(15, game.scores.get(1));
 
-        assertTrue(game.aScore > aScore);
-        assertTrue(game.bScore > bScore);
+        assertTrue(game.scores.get(0) > aScore);
+        assertTrue(game.scores.get(1) > bScore);
 
         // Sets score of both players to 40
         game.scoredA();
         game.scoredB();
 
-        assertEquals(30, game.aScore);
-        assertEquals(30, game.bScore);
+        assertEquals(30, game.scores.get(0));
+        assertEquals(30, game.scores.get(1));
 
         game.scoredA();
         game.scoredB();
 
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
 
         game.scoredA(); // should not go above 40
         game.scoredB(); // same
 
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
     }
 
     /**
@@ -80,9 +80,9 @@ public class KataTest {
         game.scoredB();
         game.scoredA();
 
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
-        assertTrue(game.advantageA);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
+        assertTrue(game.advantages.get(0));
     }
 
     /**
@@ -104,9 +104,9 @@ public class KataTest {
         game.scoredA();
         game.scoredB();
 
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
-        assertTrue(game.advantageB);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
+        assertTrue(game.advantages.get(1));
     }
 
     @Test
@@ -122,15 +122,15 @@ public class KataTest {
         game.scoredA();
         game.scoredB();
 
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
-        assertTrue(game.advantageB);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
+        assertTrue(game.advantages.get(1));
 
         game.scoredA();
-        assertEquals(40, game.aScore);
-        assertEquals(40, game.bScore);
-        assertFalse(game.advantageB);
-        assertFalse(game.advantageA);
+        assertEquals(40, game.scores.get(0));
+        assertEquals(40, game.scores.get(1));
+        assertFalse(game.advantages.get(1));
+        assertFalse(game.advantages.get(0));
     }
 
     @Test

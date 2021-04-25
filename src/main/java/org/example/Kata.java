@@ -7,26 +7,19 @@ class Kata {
     ArrayList<String> playerLetters = new ArrayList<>(Arrays.asList("A", "B"));
     ArrayList<Integer> scores;
     ArrayList<Boolean> advantages;
-    int aScore;
-    int bScore;
     String winner;
-    boolean advantageA;
-    boolean advantageB;
-
-
 
     public Kata(){
         scores = new ArrayList<>(Arrays.asList(0,0));
         advantages = new ArrayList<>(Arrays.asList(false, false));
         winner = null;
-        advantageA = false;
-        advantageB = false;
     }
 
     private void scored(int playerNumber){
         checkAlreadyWinner();
 
         int otherPlayerNumber = 1 - playerNumber;
+
         if (advantages.get(playerNumber)) {
             winner = playerLetters.get(playerNumber);
             return;
@@ -45,7 +38,8 @@ class Kata {
             return;
         }
         int addToScore = (scores.get(playerNumber) == 30) ? 10 : 15;
-        scores.set(playerNumber, addToScore);
+        int previousScore = scores.get(playerNumber);
+        scores.set(playerNumber, previousScore + addToScore);
     }
 
     public void scoredA() {
@@ -57,8 +51,6 @@ class Kata {
         scored(1);
     }
 
-
-
     public String showScore() {
 
         if (winner != null) {
@@ -68,17 +60,22 @@ class Kata {
         String stringA;
         String stringB;
 
-        stringA = (advantageA) ? "A" : String.valueOf(aScore);
-        stringB = (advantageB) ? "B" : String.valueOf(bScore);
+        int aScore = scores.get(0);
+        int bScore = scores.get(1);
+
+        stringA = (advantages.get(0)) ? "A" : String.valueOf(aScore);
+        stringB = (advantages.get(1)) ? "B" : String.valueOf(bScore);
 
         return getRightScoreString(stringA, stringB);
     }
 
     private String getRightScoreString(String stringA, String stringB) {
-        if (aScore != bScore || advantageA ) {
+        int aScore = scores.get(0);
+        int bScore = scores.get(1);
+        if (aScore != bScore || advantages.get(0) ) {
             return String.format("%s - %s", stringA, stringB);
         }
-        else if ( advantageB){
+        else if ( advantages.get(1)){
             return String.format("%s - %s", stringB, stringA);
         }
         else{

@@ -74,7 +74,7 @@ class Kata {
         String stringB;
 
         stringA = (advantageA) ? "A" : String.valueOf(aScore);
-        stringB = (advantageB) ? "A" : String.valueOf(bScore);
+        stringB = (advantageB) ? "B" : String.valueOf(bScore);
 
         return getRightScoreString(stringA, stringB);
     }

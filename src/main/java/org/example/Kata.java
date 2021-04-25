@@ -68,7 +68,9 @@ class Kata {
 
     public String showScore() {
 
-        checkAlreadyWinner();
+        if (winner != null) {
+            return String.format("winner: %s", winner);
+        }
 
         String stringA;
         String stringB;

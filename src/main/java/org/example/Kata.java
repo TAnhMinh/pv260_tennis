@@ -1,6 +1,12 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 class Kata {
+    ArrayList<String> playerLetters = new ArrayList<>(Arrays.asList("A", "B"));
+    ArrayList<Integer> scores;
+    ArrayList<Boolean> advantages;
     int aScore;
     int bScore;
     String winner;
@@ -10,59 +16,48 @@ class Kata {
 
 
     public Kata(){
-        aScore = 0;
-        bScore = 0;
+        scores = new ArrayList<>(Arrays.asList(0,0));
+        advantages = new ArrayList<>(Arrays.asList(false, false));
         winner = null;
         advantageA = false;
         advantageB = false;
     }
 
-    public void scoredA() {
+    private void scored(int playerNumber){
         checkAlreadyWinner();
 
-        if (advantageA) {
-            winner = "A";
+        int otherPlayerNumber = 1 - playerNumber;
+        if (advantages.get(playerNumber)) {
+            winner = playerLetters.get(playerNumber);
             return;
         }
-        if (aScore == 40 && bScore == 40) {
-            if (advantageB) {
-                advantageB = false;
+        if (scores.get(playerNumber) == 40 && scores.get(otherPlayerNumber) == 40) {
+            if (advantages.get(otherPlayerNumber)) {
+                advantages.set(otherPlayerNumber, false);
                 return;
             }
-            advantageA = true;
+            advantages.set(playerNumber, true);
             return;
 
         }
-        if (aScore == 40){
-            winner = "A";
+        if (scores.get(playerNumber) == 40){
+            winner = playerLetters.get(playerNumber);
             return;
         }
-        aScore += (aScore == 30) ? 10 : 15;
+        int addToScore = (scores.get(playerNumber) == 30) ? 10 : 15;
+        scores.set(playerNumber, addToScore);
+    }
+
+    public void scoredA() {
+        scored(0);
 
     }
 
     public void scoredB() {
-        checkAlreadyWinner();
-
-        if (advantageB) {
-            winner = "B";
-            return;
-        }
-        if (bScore == 40 && aScore == 40) {
-            if (advantageA) {
-                advantageA = false;
-                return;
-            }
-            advantageB = true;
-            return;
-        }
-        if (bScore == 40){
-            winner = "B";
-            return;
-        }
-        bScore += (bScore == 30) ? 10 : 15;
-
+        scored(1);
     }
+
+
 
     public String showScore() {
 
@@ -82,12 +77,10 @@ class Kata {
     private String getRightScoreString(String stringA, String stringB) {
         if (aScore != bScore || advantageA ) {
             return String.format("%s - %s", stringA, stringB);
-
         }
         else if ( advantageB){
             return String.format("%s - %s", stringB, stringA);
         }
-
         else{
             return (aScore == 40) ? "deuce" : String.format("%s all", stringA);
         }

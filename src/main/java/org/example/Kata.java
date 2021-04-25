@@ -80,10 +80,15 @@ class Kata {
     }
 
     private String getRightScoreString(String stringA, String stringB) {
-        if (aScore != bScore || advantageA || advantageB) {
+        if (aScore != bScore || advantageA ) {
             return String.format("%s - %s", stringA, stringB);
 
-        } else{
+        }
+        else if ( advantageB){
+            return String.format("%s - %s", stringB, stringA);
+        }
+
+        else{
             return (aScore == 40) ? "deuce" : String.format("%s all", stringA);
         }
     }

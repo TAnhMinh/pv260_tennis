@@ -187,6 +187,32 @@ public class KataTest {
     }
 
     /**
+     * Tests some showScore() when B has advantage.
+     */
+    @Test
+    public void dumbBAdvantageShowScoreTest(){
+        Kata game = new Kata();
+
+        // both have 15
+        game.scoredA();
+        game.scoredB();
+
+        // both have 30
+        game.scoredA();
+        game.scoredB();
+
+        // both have 40
+        // Game is now tied at 40 - 40 -> "deuce"
+        game.scoredA();
+        game.scoredB();
+
+        // B will have advantage
+        game.scoredB();
+
+        assertEquals("B - 40", game.showScore());
+    }
+
+    /**
      * Tests if showScore() returns winner: A in correct format
      * when playerA is a winner.
      */

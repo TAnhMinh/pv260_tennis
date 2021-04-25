@@ -41,8 +41,6 @@ class Kata {
 
     }
 
-
-
     public void scoredB() {
         checkAlreadyWinner();
 
@@ -76,6 +74,10 @@ class Kata {
         stringA = (advantageA) ? "A" : String.valueOf(aScore);
         stringB = (advantageB) ? "A" : String.valueOf(bScore);
 
+        return getRightScoreString(stringA, stringB);
+    }
+
+    private String getRightScoreString(String stringA, String stringB) {
         if (aScore != bScore || advantageA || advantageB) {
             return String.format("%s - %s", stringA, stringB);
 
